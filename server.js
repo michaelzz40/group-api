@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-// const cors = require('cors');
+const cors = require('cors');
 
 const app = express()
 port = process.env.PORT || 3000
@@ -11,7 +11,7 @@ port = process.env.PORT || 3000
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-// app.use(cors(corsOptions));
+app.use(cors());
 
 const db = require('./api/models');
 db.sequelize.sync();
