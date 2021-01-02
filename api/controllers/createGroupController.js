@@ -47,7 +47,7 @@ exports.findOne = async (req, res) => {
     const id = req.params.id
     let group = null;
     try {
-        group = await group.findByPk(id);
+        group = await Group.findByPk(id);
     } catch (error) {
         return res.status(500).send({
             message:

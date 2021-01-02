@@ -5,10 +5,6 @@ const cors = require('cors');
 const app = express()
 port = process.env.PORT || 3000
 
-// var corsOptions = {
-//     origin: "http://localhost:8081"
-// };
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
