@@ -2,7 +2,7 @@ const { sequelize, Sequelize } = require(".");
 
 module.exports = (sequelize, Sequelize) => {
     const Group = sequelize.define("groups", {
-        groupID: {
+        groupId: {
             type: Sequelize.INTEGER,
             primaryKey: true,
             autoIncrement: true
