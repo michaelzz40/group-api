@@ -31,7 +31,7 @@ exports.create = (req, res) => {
 
 // Retrieve all requests from the database
 exports.findAll = (req, res) => {
-    Group.findAll().then((data) => {
+    Group.findAll({ where: {userId: req.user.userId }}).then((data) => {
         res.send(data);
     }).catch((err) => {
         res.status(500).send({
