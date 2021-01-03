@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const protected = require('./protectRouteMiddleware');
 
 // File to define all the api routes
 module.exports = app => {
@@ -10,7 +11,7 @@ module.exports = app => {
     router.post("/", groups.create);
 
     // Retrieve all groups
-    router.get("/", groups.findAll);
+    router.get("/", protected, groups.findAll);
 
     // Retrieve a single Group with id
     router.get("/:id", groups.findOne);

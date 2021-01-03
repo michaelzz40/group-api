@@ -2,6 +2,7 @@
 const db = require('../models');
 const Group = db.groups;
 
+
 // Create a new group
 exports.create = (req, res) => {
     // Validate create group request
@@ -29,7 +30,7 @@ exports.create = (req, res) => {
     });    
 }
 
-// Retrieve all requests from the database
+// Retrieve all groups where the user is within the group from the database
 exports.findAll = (req, res) => {
     Group.findAll({ where: {userId: req.user.userId }}).then((data) => {
         res.send(data);
