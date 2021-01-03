@@ -2,7 +2,6 @@
 const db = require('../models');
 const Group = db.groups;
 
-
 // Create a new group
 exports.create = (req, res) => {
     // Validate create group request

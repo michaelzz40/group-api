@@ -1,17 +1,19 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/userModel');
+const db = require('../models');
+const User = db.users;
 
 module.exports = async (req, res, next) => {
     let token;
 
-    if (req.headers.authorization && req.headers.startsWith('Bearer')) {
+    if (req.headers.authorization) {
+        console.log(req.headers.authorization);
         try {
             token = req.headers.authorization.split(' ')[1];
-
-            const decoded = jwt.verify(token, process.env.JWT_KEY);
-
-            req.user = await User.findByPk(decoded.id).select('-password');
-
+            console.log(token);
+            const decoded = jwt.verify(token, "" + process.env.JWT_KEY);
+            console.log(decoded);
+            req.user = await User.findOne({ where: {userId: decoded.id }});
+            console.log(req.user);
             next();
         } catch (error) {
             console.error(error);

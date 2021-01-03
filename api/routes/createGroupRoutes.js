@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const protected = require('./protectRouteMiddleware');
+const protected = require('../controllers/protectRouteMiddleware');
 
 // File to define all the api routes
 module.exports = app => {
@@ -8,7 +8,7 @@ module.exports = app => {
     let router = require('express').Router();
 
     // Create a new group
-    router.post("/", groups.create);
+    router.post("/", protected, groups.create);
 
     // Retrieve all groups
     router.get("/", protected, groups.findAll);

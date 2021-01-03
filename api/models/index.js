@@ -24,5 +24,6 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.groups = require('./createGroupModel')(sequelize, Sequelize);
+db.users = require('./userModel')(sequelize, Sequelize);
 
 module.exports = db;
