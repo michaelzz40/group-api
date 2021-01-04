@@ -1,29 +1,31 @@
 const { Router } = require("express");
-const protected = require('../controllers/protectRouteMiddleware');
+const protected = require("../controllers/protectRouteMiddleware");
 
 // File to define all the api routes
 module.exports = app => {
-    const groups = require('../controllers/createGroupController');
+  const groups = require("../controllers/createGroupController");
 
-    let router = require('express').Router();
+  let router = require("express").Router();
 
-    // Create a new group
-    router.post("/", protected, groups.create);
+  // Create a new group
+  router.post("/", protected, groups.create);
 
-    // Retrieve all groups
-    router.get("/", protected, groups.findAll);
+  // Retrieve all groups
+  router.get("/", protected, groups.findAll);
 
-    // Retrieve a single Group with id
-    router.get("/:id", groups.findOne);
+  router.get("/expenses/:groupId", protected, groups.getGroupExpenses);
 
-    // Update a group with id
-    router.put("/:id", groups.update);
+  // Retrieve a single Group with id
+  router.get("/:id", protected, groups.findOne);
 
-    // Delete a group with id
-    router.delete("/:id", groups.delete);
+  // Update a group with id
+  router.put("/:id", groups.update);
 
-    // Delete all groups
-    router.delete("/", groups.deleteAll);
+  // Delete a group with id
+  router.delete("/:id", protected, groups.delete);
 
-    app.use('/api/groups', router);
-}
+  // Delete all groups
+  router.delete("/", groups.deleteAll);
+
+  app.use("/api/groups", router);
+};
